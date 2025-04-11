@@ -179,29 +179,38 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand rgb-text" href="#"><svg width="220" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <a class="navbar-brand rgb-text" href="#"><svg width="320" height="50" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00c6ff" />
-      <stop offset="50%" stop-color="#0072ff" />
-      <stop offset="100%" stop-color="#6a11cb" />
+    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0062FF"/>   <!-- Blue -->
+      <stop offset="50%" stop-color="#8A2BE2"/> <!-- Purple -->
+      <stop offset="100%" stop-color="#00B4D8"/> <!-- Teal -->
     </linearGradient>
+    
+    <filter id="ribbonLight">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/>
+      <feSpecularLighting result="specOut" in="blur" specularConstant="0.8" specularExponent="20" lighting-color="#fff">
+        <fePointLight x="50" y="30" z="200"/>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
+    </filter>
   </defs>
-  
-  <!-- Abstract AI Symbol -->
-  <path d="M10 30 
-           Q20 10 30 30 
-           Q40 50 50 30 
-           Q60 10 70 30 
-           Q80 50 90 30" 
-        fill="none" 
-        stroke="url(#aiGradient)" 
-        stroke-width="3" 
-        stroke-linecap="round" />
-  
-  <!-- Company Name -->
-  <text x="105" y="35" font-family="'Arial', sans-serif" font-size="28" font-weight="bold" fill="url(#aiGradient)">
-    Manix<tspan fill="#ffffff">AI</tspan>
+
+  <!-- 3D Ribbon M (Left Position) -->
+  <g transform="translate(0,10)">
+    <path d="M40 140 L80 20 L100 80 L120 20 L160 140 L100 110 L80 140 L40 140Z" 
+          fill="url(#ribbonGradient)" 
+          filter="url(#ribbonLight)"/>
+    <path d="M160 140 L120 20 L120 50 L160 170Z" fill="url(#ribbonGradient)" fill-opacity="0.6"/>
+    <path d="M40 140 L80 20 L80 50 L40 170Z" fill="url(#ribbonGradient)" fill-opacity="0.6"/>
+    <path d="M80 20 L100 80 L100 110 L80 140Z" fill="url(#ribbonGradient)" fill-opacity="0.8"/>
+    <path d="M100 80 L120 20 L120 50 L100 110Z" fill="url(#ribbonGradient)" fill-opacity="0.8"/>
+  </g>
+
+  <!-- "Manix AI" Text (Right-Aligned, Vertically Centered) -->
+  <text x="180" y="90" font-family="'Arial Black', sans-serif" font-size="58" fill="#fff">
+    <tspan fill="url(#ribbonGradient)">Manix</tspan>
+    <tspan fill="#fff" font-weight="normal"> AI</tspan>
   </text>
 </svg></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
