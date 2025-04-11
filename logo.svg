@@ -18,8 +18,5 @@
         stroke-width="3" 
         stroke-linecap="round" />
   
-  <!-- Company Name -->
-  <text x="105" y="35" font-family="'Arial', sans-serif" font-size="28" font-weight="bold" fill="url(#aiGradient)">
-    Manix<tspan fill="#ffffff">AI</tspan>
-  </text>
+
 </svg>
