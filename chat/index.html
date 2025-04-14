@@ -129,7 +129,7 @@
 <script>
 const API_KEY = "AIzaSyDYgSxfdlB3w5R87IDRLVKrR1m9Ub5dL4c";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-const SYSTEM_PROMPT = "You are MantixAi, a helpful and concise AI assistant for software development teams.";
+const SYSTEM_PROMPT = "";
 
 let chats = JSON.parse(localStorage.getItem('chats') || '{}');
 let currentChatId = null;
@@ -243,7 +243,7 @@ async function fetchGeminiResponse(messages) {
   });
 
   const data = await response.json();
-  return data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I didn’t understand that.";
+  return data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I am currently in development and can't respond right now. Check back later though!";
 }
 
 async function autoNameChat(chatId) {
