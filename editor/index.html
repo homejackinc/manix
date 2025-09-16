@@ -7,6 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/dracula.min.css" rel="stylesheet">
+
     <style>
         body, html {
             background-color: #1a1a1a;
@@ -246,17 +247,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            
                 <div class="api-key-container">
                     <div class="form-group">
-                        <label for="api-key">Manix API Key</label>
+                        <label for="api-key">Manix API Key: AIzaSyBt02sF2fwoJZKCa8QahJgKUkSMF5Nq4J4</label>
                         <input type="password" class="form-control" id="api-key" placeholder="Enter your Manix API key">
-                       
                         <small class="form-text text-muted">Your API key is stored locally in your browser and only sent to Manix's servers.</small>
                         <div id="api-status" class="api-status"></div>
                     </div>
                     <button id="save-api-key" class="btn btn-primary">Save API Key</button>
                     <button id="validate-api-key" class="btn btn-info">Validate Key</button>
                 </div>
+               
                 
                 <div class="form-group mt-3">
                     <label for="ai-prompt">What would you like to change in your code?</label>
@@ -312,7 +314,7 @@
 </head>
 <body>
     <h1>Hello, World!</h1>
-    <p>Start editing your code here or ask Manix AI for help! or <a href="/editor/templates">start with a template!</a></p>
+    <p>Start editing your code here or ask Manix AI for help! or <a href="https://manixai.com/editor/templates/"> Start with a template!</a></p>
 </body>
 </html>`;
 
@@ -593,7 +595,7 @@
         }
         
         if (!prompt) {
-            alert('Please enter a prompt for ManixAi.');
+            alert('Please enter a prompt for Manix.');
             return;
         }
         
@@ -602,7 +604,7 @@
         geminiButtonText.textContent = 'Processing...';
         sendToGeminiButton.disabled = true;
         
-        geminiResponse.textContent = 'working on it...';
+        geminiResponse.textContent = 'Contacting Manix AI...';
         
         try {
             // Call the real Gemini API
@@ -615,7 +617,7 @@
             applyChangesButton.disabled = false;
         } catch (error) {
             geminiResponse.textContent = `Error: ${error.message}`;
-            console.error('Gemini API error:', error);
+            console.error('Manix API error:', error);
         } finally {
             // Restore button state
             geminiSpinner.style.display = 'none';
@@ -624,7 +626,7 @@
         }
     });
 
-   applyChangesButton.addEventListener('click', () => {
+    applyChangesButton.addEventListener('click', () => {
     let modifiedCode = geminiResponse.textContent;
     
     // Remove Markdown code block indicators if present
@@ -643,7 +645,7 @@
     // Validate Gemini API Key
     async function validateGeminiApiKey(apiKey) {
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -680,9 +682,9 @@
 
     // Call the real Gemini API
     async function callGeminiAPI(apiKey, code, prompt) {
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
         
-        const fullPrompt = `You are Manix Ai, developed and built by Manix Ai engineers to be an expert web developer. Please help me modify this HTML code based on the following request: ${prompt}. 
+        const fullPrompt = `you are manix ai. You are an expert web developer. Please help me modify this HTML code based on the following request: ${prompt}. 
         
 Here is the current code:
 ${code}
@@ -729,10 +731,7 @@ Please return ONLY the complete modified code without any additional explanation
         }
     }
 
-    // Save editor content periodically
-    setInterval(() => {
-        localStorage.setItem(STORAGE_KEY, editor.getValue());
-    }, 5000);
+   
 
     // Template function
     function openTemplates() {
